@@ -1,0 +1,2256 @@
+{
+  "params": [
+    {
+      "key": "key",
+      "name": "Key",
+      "min": 0,
+      "max": 11,
+      "default": 9,
+      "options": [
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B"
+      ]
+    },
+    {
+      "key": "scale",
+      "name": "Scale",
+      "min": 0,
+      "max": 21,
+      "default": 1,
+      "options": [
+        "Major",
+        "Minor",
+        "Maj pent.",
+        "Min pent.",
+        "Min blues",
+        "Harm. minor",
+        "Mel. minor",
+        "Dorian",
+        "Phrygian",
+        "Lydian",
+        "Mixolydian",
+        "Locrian",
+        "Hirajoshi",
+        "Insen",
+        "Iwato",
+        "Yo",
+        "Hung. minor",
+        "Double harm.",
+        "Phryg. dom.",
+        "Whole tone",
+        "Dim. W/H",
+        "Egypt. pent."
+      ]
+    },
+    {
+      "key": "bars",
+      "name": "Bars",
+      "min": 1,
+      "max": 8,
+      "default": 4,
+      "display": "int"
+    },
+    {
+      "key": "speed",
+      "name": "Speed",
+      "min": 0,
+      "max": 2,
+      "default": 1,
+      "options": [
+        "Slow",
+        "Medium",
+        "Fast"
+      ]
+    },
+    {
+      "key": "octave",
+      "name": "Octave",
+      "min": 2,
+      "max": 6,
+      "default": 4,
+      "display": "int"
+    },
+    {
+      "key": "mutation",
+      "name": "Intensity",
+      "min": 0,
+      "max": 1,
+      "default": 0.25
+    },
+    {
+      "key": "recombination",
+      "name": "Recombine",
+      "min": 0,
+      "max": 1,
+      "default": 0.35
+    },
+    {
+      "key": "play",
+      "name": "Power",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "status",
+      "name": "Status",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "display": "string"
+    },
+    {
+      "key": "active_pad",
+      "name": "Selected pad",
+      "min": 0,
+      "max": 15,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "generate",
+      "name": "New melody",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_1",
+      "name": "Pad 1",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_2",
+      "name": "Pad 2",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_3",
+      "name": "Pad 3",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_4",
+      "name": "Pad 4",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_5",
+      "name": "Pad 5",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_6",
+      "name": "Pad 6",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_7",
+      "name": "Pad 7",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_8",
+      "name": "Pad 8",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_9",
+      "name": "Pad 9",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_10",
+      "name": "Pad 10",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_11",
+      "name": "Pad 11",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_12",
+      "name": "Pad 12",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_13",
+      "name": "Pad 13",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_14",
+      "name": "Pad 14",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_15",
+      "name": "Pad 15",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_16",
+      "name": "Pad 16",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_base",
+      "name": "Pad base note",
+      "min": 0,
+      "max": 112,
+      "default": 36,
+      "display": "int"
+    },
+    {
+      "key": "melody_channel",
+      "name": "Melody MIDI",
+      "min": 2,
+      "max": 16,
+      "default": 2,
+      "display": "int"
+    },
+    {
+      "key": "chord_channel",
+      "name": "Chord MIDI",
+      "min": 2,
+      "max": 16,
+      "default": 3,
+      "display": "int"
+    },
+    {
+      "key": "bass_channel",
+      "name": "Bass MIDI",
+      "min": 2,
+      "max": 16,
+      "default": 4,
+      "display": "int"
+    },
+    {
+      "key": "info",
+      "name": "Phrase",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "display": "string"
+    },
+    {
+      "key": "export",
+      "name": "Export MIDI",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "substyle",
+      "name": "Hip Hop substyle",
+      "min": 0,
+      "max": 38,
+      "default": 0,
+      "options": [
+        "All",
+        "Bare",
+        "Blackout",
+        "Block",
+        "Blunt",
+        "Cage",
+        "Chilled",
+        "Chronic",
+        "Cinematic",
+        "Cold",
+        "Concrete",
+        "Crushed",
+        "Depth",
+        "Drip",
+        "Dusty",
+        "Eventide",
+        "Grim",
+        "Heavy",
+        "Hollow",
+        "Hustle",
+        "Keyed",
+        "Lowkey",
+        "Murky",
+        "Pilot",
+        "Prowl",
+        "Raw",
+        "Rugged",
+        "Scarred",
+        "Shadow",
+        "Slab",
+        "Slugged",
+        "Smoke",
+        "Sombre",
+        "Steely",
+        "Stripped",
+        "Throne",
+        "Vault",
+        "Vertical",
+        "Worn"
+      ]
+    },
+    {
+      "key": "melody_client",
+      "name": "Melody destination",
+      "min": 0,
+      "max": 254,
+      "default": 253,
+      "display": "int"
+    },
+    {
+      "key": "melody_port",
+      "name": "Melody port",
+      "min": 0,
+      "max": 255,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "chord_client",
+      "name": "Chord destination",
+      "min": 0,
+      "max": 254,
+      "default": 253,
+      "display": "int"
+    },
+    {
+      "key": "chord_port",
+      "name": "Chord port",
+      "min": 0,
+      "max": 255,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "bass_client",
+      "name": "Bass destination",
+      "min": 0,
+      "max": 254,
+      "default": 253,
+      "display": "int"
+    },
+    {
+      "key": "bass_port",
+      "name": "Bass port",
+      "min": 0,
+      "max": 255,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "export_parts",
+      "name": "Export parts",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_1_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_1_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_1_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_1_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_2_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_2_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_2_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_2_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_3_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_3_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_3_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_3_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_4_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_4_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_4_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_4_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_5_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_5_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_5_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_5_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_6_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_6_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_6_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_6_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_7_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_7_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_7_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_7_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_8_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_8_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_8_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_8_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_9_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_9_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_9_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_9_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_10_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_10_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_10_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_10_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_11_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_11_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_11_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_11_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_12_on",
+      "name": "Enabled",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_12_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_12_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_12_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "vary_motif",
+      "name": "Vary motif",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "melody_enabled",
+      "name": "Melody",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "chord_enabled",
+      "name": "Chord",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "bass_enabled",
+      "name": "Bass",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "bank_slot",
+      "name": "Creation",
+      "min": 1,
+      "max": 128,
+      "default": 1,
+      "display": "int"
+    },
+    {
+      "key": "bank_save",
+      "name": "Save creation",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_load",
+      "name": "Load creation",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_favorite",
+      "name": "Toggle favorite",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_filter",
+      "name": "Favorites only",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "All",
+        "Favorites"
+      ]
+    },
+    {
+      "key": "bank_info",
+      "name": "Creation info",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "display": "string"
+    },
+    {
+      "key": "bank_scroll",
+      "name": "Scroll creations",
+      "min": 0,
+      "max": 122,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "bank_row_1",
+      "name": "Creation row 1",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_2",
+      "name": "Creation row 2",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_3",
+      "name": "Creation row 3",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_4",
+      "name": "Creation row 4",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_5",
+      "name": "Creation row 5",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_6",
+      "name": "Creation row 6",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_row_7",
+      "name": "Creation row 7",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "preview_melody_0",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_1",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_2",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_3",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_4",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_5",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_6",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_7",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_8",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_9",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_10",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_11",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_12",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_13",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_14",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_15",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_16",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_17",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_18",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_19",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_20",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_21",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_22",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_23",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_24",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_25",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_26",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_27",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_28",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_29",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_30",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_melody_31",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_0",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_1",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_2",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_3",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_4",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_5",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_6",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_7",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_8",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_9",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_10",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_11",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_12",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_13",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_14",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_15",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_16",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_17",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_18",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_19",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_20",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_21",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_22",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_23",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_24",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_25",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_26",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_27",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_28",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_29",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_30",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_chord_31",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_0",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_1",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_2",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_3",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_4",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_5",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_6",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_7",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_8",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_9",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_10",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_11",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_12",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_13",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_14",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_15",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_16",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_17",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_18",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_19",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_20",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_21",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_22",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_23",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_24",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_25",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_26",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_27",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_28",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_29",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_30",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "preview_bass_31",
+      "name": "Note preview",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "bank_up",
+      "name": "Bank previous rows",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "bank_down",
+      "name": "Bank next rows",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "variation_type",
+      "name": "Variation",
+      "min": 0,
+      "max": 2,
+      "default": 0,
+      "options": [
+        "Light / Dark",
+        "Rhythm",
+        "Masked"
+      ]
+    },
+    {
+      "key": "light_dark",
+      "name": "Light - Dark",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "candidates",
+      "name": "Candidates",
+      "min": 8,
+      "max": 32,
+      "default": 16,
+      "display": "int"
+    },
+    {
+      "key": "history_back",
+      "name": "Previous creation",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "history_forward",
+      "name": "Next creation",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "pad_fixed",
+      "name": "Fix pad",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "Fixed"
+      ]
+    },
+    {
+      "key": "fx_page",
+      "name": "FX page",
+      "min": 1,
+      "max": 4,
+      "default": 1,
+      "display": "int"
+    },
+    {
+      "key": "fx_page_previous",
+      "name": "Previous FX page",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "fx_page_next",
+      "name": "Next FX page",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "fx_add",
+      "name": "Add effect",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "fx_view_1_on",
+      "name": "FX 1",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_view_1_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_view_1_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_view_1_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_view_2_on",
+      "name": "FX 2",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_view_2_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_view_2_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_view_2_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "fx_view_3_on",
+      "name": "FX 3",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "key": "fx_view_3_type",
+      "name": "Effect",
+      "min": 0,
+      "max": 11,
+      "default": 0,
+      "options": [
+        "Off",
+        "Swing",
+        "Gate",
+        "Velocity",
+        "Humanize",
+        "Repeat",
+        "Arp up",
+        "Arp down",
+        "Bass motif",
+        "Probability",
+        "Strum",
+        "Accent"
+      ]
+    },
+    {
+      "key": "fx_view_3_amount",
+      "name": "Amount",
+      "min": 0,
+      "max": 1,
+      "default": 0.5
+    },
+    {
+      "key": "fx_view_3_target",
+      "name": "Apply to",
+      "min": 0,
+      "max": 3,
+      "default": 0,
+      "options": [
+        "All 3",
+        "Melody",
+        "Chords",
+        "Bass"
+      ]
+    },
+    {
+      "key": "export_all",
+      "name": "Export all",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "export_melody",
+      "name": "Export melody",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "export_chords",
+      "name": "Export chords",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    },
+    {
+      "key": "export_bass",
+      "name": "Export bass",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "momentary": true
+    }
+  ]
+}
