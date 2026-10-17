@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MM_HISTORY_LENGTH 8
-#define MM_HISTORY_CONTROLS 11
+#define MM_HISTORY_CONTROLS 12
 typedef struct {mm_phrase phrase;float controls[MM_HISTORY_CONTROLS];} mm_history_entry;
 typedef struct {mm_history_entry *entries;unsigned count,cursor;} mm_history;
 /* Worker/control thread only, lazily bounded to eight creations per used pad. */

@@ -4,6 +4,13 @@ import json
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
+catalog_file = root.parent / 'ttplugs_styles_catalog.json'
+if not catalog_file.exists():
+    catalog_file = root / 'ttplugs_styles_catalog.json'
+catalog = json.loads(catalog_file.read_text(encoding='utf-8'))
+substyle_opts = ['All'] + [p['name'] for p in catalog['presets']]
+genre_opts = catalog['genres']
+
 parameters = []
 
 
@@ -34,12 +41,7 @@ param('chord_channel', 'Chord MIDI', 2, 16, 3, kind='integer')
 param('bass_channel', 'Bass MIDI', 2, 16, 4, kind='integer')
 param('info', 'Phrase', kind='text')
 param('export', 'Export MIDI', kind='trigger')
-param('substyle', 'Hip Hop substyle', 0, 38, 0, ['All',
-    'Bare', 'Blackout', 'Block', 'Blunt', 'Cage', 'Chilled', 'Chronic', 'Cinematic',
-    'Cold', 'Concrete', 'Crushed', 'Depth', 'Drip', 'Dusty', 'Eventide', 'Grim',
-    'Heavy', 'Hollow', 'Hustle', 'Keyed', 'Lowkey', 'Murky', 'Pilot', 'Prowl',
-    'Raw', 'Rugged', 'Scarred', 'Shadow', 'Slab', 'Slugged', 'Smoke', 'Sombre',
-    'Steely', 'Stripped', 'Throne', 'Vault', 'Vertical', 'Worn'])
+param('substyle', 'Substyle', 0, len(substyle_opts) - 1, 0, substyle_opts)
 
 # ALSA sequencer addresses: 253 preserves subscriber routing; 254 disables a part.
 for part in ('melody', 'chord', 'bass'):
@@ -97,10 +99,15 @@ for row in range(1, 4):
 for role in ('all','melody','chords','bass'):
     param(f'export_{role}', f'Export {role}', kind='trigger')
 
+# Style (Genre) selector
+param('style', 'Style', 0, len(genre_opts) - 1, 0, genre_opts)
+
 lines = ['/* Generated from tools/gen_parameters.py. Keep published indices stable. */',
+         '#ifndef MM_PARAMS_H',
+         '#define MM_PARAMS_H',
          '#define MM_PARAM_COUNT ' + str(len(parameters)),
          'enum { MM_NUMBER, MM_INTEGER, MM_TEXT, MM_TRIGGER, MM_PAD };',
-         'typedef struct { const char *key, *name; float min, max, def; int kind, nopts; const char *opts[40]; } mm_param;',
+         'typedef struct { const char *key, *name; float min, max, def; int kind, nopts; const char *opts[360]; } mm_param;',
          'enum { ' + ', '.join('P_' + p['key'].upper() for p in parameters) + ' };',
          'static const mm_param mm_params[MM_PARAM_COUNT] = {']
 skin = []
@@ -120,6 +127,7 @@ for p in parameters:
         entry['display'] = 'int'
     skin.append(entry)
 lines.append('};')
+lines.append('#endif /* MM_PARAMS_H */')
 (root / 'build').mkdir(exist_ok=True)
 (root / 'skin').mkdir(exist_ok=True)
 (root / 'build/mm_params.h').write_text('\n'.join(lines) + '\n')

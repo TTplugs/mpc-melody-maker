@@ -4,6 +4,7 @@
 #ifndef TT_MM_HARMONIC_CONTEXT_H
 #define TT_MM_HARMONIC_CONTEXT_H
 #include "mm_base6_playback.h"
+#include "ttmm_phrase_rules.h"
 #include <limits.h>
 typedef struct {m3_phrase phrase;uint32_t boundaries[2*MM_MAX_NOTES+2];} mmh_scratch;
 enum {MMH_OK=0,MMH_INVALID=1,MMH_CAPACITY=2};
@@ -53,7 +54,8 @@ static inline int mmh_refresh(const m3_phrase *input,const mm_part *chords,const
  for(i=1;i<count;i++){uint32_t v=scratch->boundaries[i];j=i;while(j&&scratch->boundaries[j-1]>v){scratch->boundaries[j]=scratch->boundaries[j-1];j--;}scratch->boundaries[j]=v;}
  for(i=0;i+1<count;i++){
   uint32_t a=scratch->boundaries[i],b=scratch->boundaries[i+1],mask;int low,n;m3_chord segment;
-  if(a==b)continue;memset(&segment,0,sizeof segment);
+  if(a==b)continue;
+  memset(&segment,0,sizeof segment);
   n=mmh_active(chords,(uint64_t)a+b,&low,&mask,segment.pitches);if(n<0)return MMH_CAPACITY;if(!n)continue;
   if(scratch->phrase.chord_count>=512)return MMH_CAPACITY;
   segment.start=(int32_t)a;segment.end=(int32_t)b;segment.count=n;segment.mask=mask;
@@ -61,8 +63,12 @@ static inline int mmh_refresh(const m3_phrase *input,const mm_part *chords,const
  }
  for(i=0;i<(unsigned)input->count;i++){
   m3_note *n=&scratch->phrase.notes[i];int low,lowest_bass;uint32_t mask,ignored;
+  uint32_t next_start=(i+1<(unsigned)input->count)?(uint32_t)input->notes[i+1].start:length;
+  uint32_t trig_tick=ttmm_resolve_trigger_tick((uint32_t)n->start,(uint32_t)n->duration,next_start,length,input->speed);
   mmh_active(chords,2*(uint64_t)n->start,&low,&mask,NULL);
+  if(!mask&&trig_tick!=(uint32_t)n->start)mmh_active(chords,2*(uint64_t)trig_tick,&low,&mask,NULL);
   mmh_active(bass,2*(uint64_t)n->start,&lowest_bass,&ignored,NULL);
+  if(lowest_bass<0&&trig_tick!=(uint32_t)n->start)mmh_active(bass,2*(uint64_t)trig_tick,&lowest_bass,&ignored,NULL);
   n->chord=mask;n->bass=lowest_bass;n->root=mmh_root(mask,lowest_bass);
  }
  *out=scratch->phrase;return MMH_OK;

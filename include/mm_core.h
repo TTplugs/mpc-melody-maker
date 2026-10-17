@@ -25,6 +25,7 @@ typedef struct {
     int key, scale, bars, speed, pad, octave;
     float mutation, recombination;
     const char *substyle;
+    int genre;
 } mm_request;
 /* No I/O in generation. Each request owns its RNG, so results are repeatable. */
 mm_bank *mm_bank_load(const char *path, char *error, unsigned error_size);

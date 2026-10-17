@@ -31,14 +31,25 @@ static int mmce_mode(int ui){switch(ui){case 0:return 4;case 1:return 0;case 5:r
 static int mmce_finish(mmce_engine *e,const mm_request *r,mm_phrase *out){
  mmvs_header event;const mmv_frame *frame=NULL;int status=mmvs_poll(&e->results,1,&event,&frame);if(status!=MMVS_NEW_FRAME)return status==MMVS_FAILED&&event.status==MMV_NO_COMPATIBLE_RHYTHM?7:4;
  e->pending=*frame;mmr_drop(&e->results);int shift=(r->key-e->pending.melody.key+18)%12-6;
+ int target_mode=mmce_mode(r->scale);
+ int prev_orig=-1,prev_proj=-1;
  for(unsigned part=0;part<3;part++)for(unsigned i=0;i<e->pending.playback.parts[part].count;i++){
-  mm_note *n=&e->pending.playback.parts[part].notes[i];int pitch=n->pitch+shift+(part==0?(r->octave-4)*12:0);if(pitch<0||pitch>127)return 5;pitch=mm_scale_pitch(pitch,r->key,r->scale,0,127);if(pitch<0)return 5;n->pitch=(uint8_t)pitch;
+  mm_note *n=&e->pending.playback.parts[part].notes[i];int orig=n->pitch;
+  int pitch=orig+shift+(part==0?(r->octave-4)*12:0);if(pitch<0||pitch>127)return 5;
+  pitch=mm_scale_pitch(pitch,r->key,r->scale,0,127);if(pitch<0)return 5;
+  if(part==0&&target_mode<0&&i>0&&i+1<e->pending.playback.parts[0].count&&n->start%(2*MM_PPQ)!=0){
+   pitch=ttmm_preserve_repeated_contour(prev_orig,orig,prev_proj,pitch,r->key,r->scale,24,108);
+  }
+  if(part==0){prev_orig=orig;prev_proj=pitch;}
+  n->pitch=(uint8_t)pitch;
  }
  char source_name[48];snprintf(source_name,sizeof source_name,"%s",e->pending.playback.source_id);char *tag=strchr(source_name,'@');if(tag)*tag=0;
- if(strlen(source_name)>40)return 5;snprintf(e->pending.playback.source_id,48,"%.40s@%02d%02d",source_name,r->key,r->scale);
- int target_mode=mmce_mode(r->scale);if(target_mode>=0)e->pending.melody.mode=target_mode;
+ if(strlen(source_name)>40)return 5;
+ snprintf(e->pending.playback.source_id,48,"%.40s@%02d%02d",source_name,r->key,r->scale);
+ if(target_mode>=0)e->pending.melody.mode=target_mode;
  e->pending.melody.key=r->key;for(int i=0;i<e->pending.melody.count;i++)e->pending.melody.notes[i].pitch=e->pending.playback.parts[0].notes[i].pitch;
- if(mmh_refresh(&e->pending.melody,&e->pending.playback.parts[1],&e->pending.playback.parts[2],&e->vs.harmony,&e->vs.refreshed)!=MMH_OK)return 5;e->pending.melody=e->vs.refreshed;
+ if(mmh_refresh(&e->pending.melody,&e->pending.playback.parts[1],&e->pending.playback.parts[2],&e->vs.harmony,&e->vs.refreshed)!=MMH_OK)return 5;
+ e->pending.melody=e->vs.refreshed;
  e->pads[r->pad]=e->pending;e->valid[r->pad]=1;e->scales[r->pad]=r->scale;*out=e->pending.playback;return 0;
 }
 int mmce_create(mmce_engine *e,const mm_request *r,int y,int x,int candidates,mm_phrase *out){

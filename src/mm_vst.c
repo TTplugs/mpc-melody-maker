@@ -4,6 +4,7 @@
 #include "mm_fx.h"
 #include "mm_creation.h"
 #include "mm_params.h"
+#include "ttplugs_styles_db.h"
 #ifdef MM_CANDIDATE_ENGINE
 #ifndef MM_FIFO_INPUT
 #error Candidate engine requires FIFO input
@@ -103,12 +104,12 @@ static void text(plugin *p,const char *status,const char *info) {
     if(info)snprintf(p->info,sizeof p->info,"%.63s",info);
     pthread_mutex_unlock(&p->text_lock);atomic_store(&p->ui_dirty,1);
 }
-static const int input_parameters[11]={P_KEY,P_SCALE,P_BARS,P_SPEED,P_OCTAVE,P_MUTATION,P_RECOMBINATION,P_SUBSTYLE,P_VARIATION_TYPE,P_LIGHT_DARK,P_CANDIDATES};
-static void remember_creation(plugin *p,int pad){float controls[11];for(int i=0;i<11;i++)controls[i]=atomic_load(&p->values[input_parameters[i]]);mm_history_record(&p->history[pad],&p->dry[pad],controls);}
+static const int input_parameters[12]={P_KEY,P_SCALE,P_BARS,P_SPEED,P_OCTAVE,P_MUTATION,P_RECOMBINATION,P_SUBSTYLE,P_VARIATION_TYPE,P_LIGHT_DARK,P_CANDIDATES,P_STYLE};
+static void remember_creation(plugin *p,int pad){float controls[12];for(int i=0;i<12;i++)controls[i]=atomic_load(&p->values[input_parameters[i]]);mm_history_record(&p->history[pad],&p->dry[pad],controls);}
 #ifdef MM_FIFO_INPUT
 static void enqueue_input(plugin *p,int pad,int action){
     mmi_event event={.pad=(uint32_t)pad,.action=(uint32_t)action,.epoch=(uint32_t)atomic_load(&p->state_epoch)};
-    for(int i=0;i<11;i++)event.parameters[i]=atomic_load(&p->values[input_parameters[i]]);
+    for(int i=0;i<12;i++)event.parameters[i]=atomic_load(&p->values[input_parameters[i]]);
 #ifdef MM_CANDIDATE_ENGINE
     event.parameters[2]=3.f/7.f;
 #endif
@@ -182,7 +183,7 @@ static void creation_job(plugin *p,int flags){
     if(flags&48){
         pthread_mutex_lock(&p->save_lock);int pad=atomic_load(&p->selected);
         const mm_history_entry *entry=mm_history_move(&p->history[pad],flags&16?-1:1);
-        if(entry){atomic_fetch_add(&p->state_epoch,1);p->dry[pad]=entry->phrase;p->dry_valid[pad]=1;for(int i=0;i<11;i++)atomic_store(&p->values[input_parameters[i]],entry->controls[i]);}
+        if(entry){atomic_fetch_add(&p->state_epoch,1);p->dry[pad]=entry->phrase;p->dry_valid[pad]=1;for(int i=0;i<12;i++)atomic_store(&p->values[input_parameters[i]],entry->controls[i]);}
         pthread_mutex_unlock(&p->save_lock);
         if(entry){refresh_effects(p);text(p,"HISTORY LOADED",NULL);}else text(p,"NO MORE HISTORY",NULL);
         flags&=~48;if(!flags)return;
@@ -368,7 +369,9 @@ static void *worker(void *pointer) {
 #else
         if(!p->bank&&!varying){text(p,"PRIVATE LIBRARY MISSING",NULL);p->host(&p->fx,42,0,0,NULL,0);continue;}
 #endif
-        atomic_store(&p->busy,1);text(p,"GENERATING HIP HOP",NULL);p->host(&p->fx,42,0,0,NULL,0);
+        atomic_store(&p->busy,1);
+        char gen_msg[48]; snprintf(gen_msg, sizeof gen_msg, "GENERATING %s", ttmm_genre_name(integer(p,P_STYLE)));
+        text(p,gen_msg,NULL);p->host(&p->fx,42,0,0,NULL,0);
         pthread_mutex_lock(&p->save_lock);
         if(epoch!=atomic_load(&p->state_epoch)){pthread_mutex_unlock(&p->save_lock);atomic_store(&p->busy,0);continue;}
         unsigned token=atomic_load(&p->published[pad]);int slot=-1;
@@ -376,12 +379,15 @@ static void *worker(void *pointer) {
         mm_request r={.seed=++seed,.key=integer(p,P_KEY),.scale=integer(p,P_SCALE),.bars=integer(p,P_BARS),
                       .speed=integer(p,P_SPEED),.pad=pad,.octave=integer(p,P_OCTAVE),
                       .mutation=atomic_load(&p->values[P_MUTATION]),.recombination=atomic_load(&p->values[P_RECOMBINATION]),
-                      .substyle=integer(p,P_SUBSTYLE)?mm_params[P_SUBSTYLE].opts[integer(p,P_SUBSTYLE)]:NULL};
+                      .substyle=integer(p,P_SUBSTYLE)?mm_params[P_SUBSTYLE].opts[integer(p,P_SUBSTYLE)]:NULL,
+                      .genre=integer(p,P_STYLE)};
 #ifdef MM_FIFO_INPUT
-        int captured[11];
-        for(int i=0;i<11;i++){const mm_param *def=&mm_params[input_parameters[i]];captured[i]=(int)lroundf(def->min+input_event.parameters[i]*(def->max-def->min));}
+        int captured[12];
+        for(int i=0;i<12;i++){const mm_param *def=&mm_params[input_parameters[i]];captured[i]=(int)lroundf(def->min+input_event.parameters[i]*(def->max-def->min));}
         r.seed=job_seed;r.key=captured[0];r.scale=captured[1];r.bars=captured[2];r.speed=captured[3];r.octave=captured[4];
-        r.mutation=input_event.parameters[5];r.recombination=input_event.parameters[6];r.substyle=captured[7]?mm_params[P_SUBSTYLE].opts[captured[7]]:NULL;
+        r.mutation=input_event.parameters[5];r.recombination=input_event.parameters[6];
+        r.substyle=captured[7]?mm_params[P_SUBSTYLE].opts[captured[7]]:NULL;
+        r.genre=captured[11];
 #endif
         int rc=-1;
 #ifdef MM_CANDIDATE_ENGINE
@@ -596,7 +602,7 @@ static int restore(plugin *p,const void *data,intptr_t size) {
     uint32_t saved_seeds[16],saved_touches[16];
     const unsigned char *cursor=(const unsigned char *)data+8,*end=(const unsigned char *)data+size;
     unsigned saved_count=decode32(&cursor);
-    if(saved_count!=32&&saved_count!=34&&saved_count!=40&&saved_count!=41&&saved_count!=90&&saved_count!=93&&saved_count!=107&&saved_count!=203&&saved_count!=205&&saved_count!=208&&saved_count!=211&&saved_count!=MM_PARAM_COUNT)return 0;
+    if(saved_count!=32&&saved_count!=34&&saved_count!=40&&saved_count!=41&&saved_count!=90&&saved_count!=93&&saved_count!=107&&saved_count!=203&&saved_count!=205&&saved_count!=208&&saved_count!=211&&saved_count!=231&&saved_count!=MM_PARAM_COUNT)return 0;
     float values[MM_PARAM_COUNT];
     for(int i=0;i<MM_PARAM_COUNT;i++)values[i]=(mm_params[i].def-mm_params[i].min)/(mm_params[i].max-mm_params[i].min);
     mm_phrase *phrases=calloc(16,sizeof(mm_phrase));uint8_t valid[16]={0};if(!phrases)return 0;

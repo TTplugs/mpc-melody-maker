@@ -1,5 +1,7 @@
 #include "mm_core.h"
 #include "mm_crypto.h"
+#include "ttmm_phrase_rules.h"
+#include "ttplugs_styles_db.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -124,7 +126,11 @@ static const mm_clip *choose(const mm_bank *b,const mm_request *r,uint32_t *stat
     for(unsigned i=0;i<b->count;i++) {
         const mm_clip *c=&b->clips[i];
         if(b->version==2&&c->variant)continue;
-        if(r->substyle && *r->substyle && strcmp(r->substyle,c->style)) continue;
+        if(r->substyle && *r->substyle) {
+            if(strcmp(r->substyle,c->style)) continue;
+        } else if(r->genre > 0) {
+            if(!ttmm_preset_matches_genre(c->style, r->genre)) continue;
+        }
         int score=abs(r->speed-(int)c->properties[0])*20;
         static const int complexity[4]={0,1,3,4};
         if(c->properties[3]) score+=abs(complexity[r->pad%4]-(int)c->properties[1])*2+abs(r->pad/4-(int)c->properties[2])*2;
@@ -224,7 +230,11 @@ static int family_generate(const mm_bank *b,const mm_request *r,mm_phrase *out){
                         if(note.start%MM_PPQ){unsigned neighbour=(rng(&seed)&1)?i-1:i+1;int delta=(int)base->parts[0].notes[neighbour].pitch-note.pitch;int limit=base->movement?5:2;if(delta>limit)delta=limit;if(delta< -limit)delta=-limit;pitch+=delta;}
                     }
                 }
-                note.start=begin+note.start-local;note.pitch=(uint8_t)family_pitch(pitch,base,r,0,shift);
+                int snapped=family_pitch(pitch,base,r,0,shift);
+                if(i>0&&i+1<base->parts[0].count&&note.start%bar&&out->parts[0].count>0){
+                    snapped=ttmm_preserve_repeated_contour(base->parts[0].notes[i-1].pitch,pitch,out->parts[0].notes[out->parts[0].count-1].pitch,snapped,r->key,r->scale,24,108);
+                }
+                note.start=begin+note.start-local;note.pitch=(uint8_t)snapped;
                 out->parts[0].notes[out->parts[0].count++]=note;
             }
         }
@@ -238,11 +248,14 @@ static int family_generate(const mm_bank *b,const mm_request *r,mm_phrase *out){
         if(!base->parts[1].count)for(int k=0;k<3;k++){int d=degree+2*k,steps=scales[r->scale].count;out->parts[1].notes[out->parts[1].count++]=(mm_note){tick,bar-80,48+r->key+scales[r->scale].notes[d%steps]+12*(d/steps),74};}
         if(!base->parts[2].count)out->parts[2].notes[out->parts[2].count++]=(mm_note){tick,2*MM_PPQ,36+r->key+scales[r->scale].notes[degree],88};
     }
-    /* Chord Fit on metric anchors; preserve passing notes on weak positions. */
+    /* Chord Fit on metric anchors and anticipated syncopations; preserve passing notes on weak positions. */
     if(base->chord_fit<2)for(unsigned n=0;n<out->parts[0].count;n++){
-        mm_note *note=&out->parts[0].notes[n];if(note->start%MM_PPQ)continue;
+        mm_note *note=&out->parts[0].notes[n];
+        uint32_t next_start=(n+1<out->parts[0].count)?out->parts[0].notes[n+1].start:out->length;
+        uint32_t trig=ttmm_resolve_trigger_tick(note->start,note->duration,next_start,out->length,r->speed);
+        if((note->start%MM_PPQ)&&trig==note->start)continue;
         int best=note->pitch,distance=128;
-        for(unsigned j=0;j<out->parts[1].count;j++){const mm_note *chord=&out->parts[1].notes[j];if(note->start<chord->start||note->start>=chord->start+chord->duration)continue;
+        for(unsigned j=0;j<out->parts[1].count;j++){const mm_note *chord=&out->parts[1].notes[j];if(trig<chord->start||trig>=chord->start+chord->duration)continue;
             for(int octave=-5;octave<=5;octave++){int pitch=chord->pitch+octave*12;if(pitch<24||pitch>108)continue;int gap=abs(pitch-note->pitch);if(gap<distance){distance=gap;best=pitch;}}
         }
         if(distance<=(base->chord_fit==0?12:2))note->pitch=best;

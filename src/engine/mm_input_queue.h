@@ -8,7 +8,7 @@
 #include <string.h>
 #define MMI_CAPACITY 64u
 #define MMI_RETRIES 8u
-typedef struct {uint32_t pad,action,epoch;float parameters[11];} mmi_event;
+typedef struct {uint32_t pad,action,epoch;float parameters[12];} mmi_event;
 typedef struct {uint32_t sequence;mmi_event event;} mmi_slot;
 typedef struct {uint32_t head,tail;mmi_slot slots[MMI_CAPACITY];} mmi_queue;
 enum {MMI_OK=0,MMI_EMPTY=1,MMI_FULL=2,MMI_CONTENDED=3,MMI_INVALID=4};

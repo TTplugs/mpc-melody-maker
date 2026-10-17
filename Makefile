@@ -23,7 +23,7 @@ build/mm_params.h: tools/gen_parameters.py
 	python3 tools/gen_parameters.py
 
 build/mpc_melody_maker-host.so: src/mm_core.c src/mm_crypto.c src/mm_fx.c src/mm_creation.c src/mm_vst.c $(ENGINE_SOURCES) include/mm_core.h include/mm_crypto.h include/mm_fx.h include/mm_creation.h build/mm_params.h
-	$(CC) $(CPPFLAGS) -Ibuild $(CFLAGS) -fPIC $(ENGINE_FLAGS) -DMM_HOST_TEST -shared src/mm_core.c src/mm_crypto.c src/mm_fx.c src/mm_creation.c src/mm_vst.c $(ENGINE_SOURCES) -o $@ -ldl -lpthread $(LDLIBS)
+	$(CC) $(CPPFLAGS) -Ibuild $(CFLAGS) -fPIC $(ENGINE_FLAGS) -fvisibility=hidden -DMM_HOST_TEST -shared src/mm_core.c src/mm_crypto.c src/mm_fx.c src/mm_creation.c src/mm_vst.c $(ENGINE_SOURCES) -o $@ -ldl -lpthread $(LDLIBS) -Wl,--no-undefined
 
 build/mpc_melody_maker.so: src/mm_core.c src/mm_crypto.c src/mm_fx.c src/mm_creation.c src/mm_vst.c $(ENGINE_SOURCES) include/mm_core.h include/mm_crypto.h include/mm_fx.h include/mm_creation.h build/mm_params.h
 	arm-linux-gnueabihf-gcc $(CPPFLAGS) -Ibuild $(CFLAGS) -fPIC $(ENGINE_FLAGS) -fvisibility=hidden -shared src/mm_core.c src/mm_crypto.c src/mm_fx.c src/mm_creation.c src/mm_vst.c $(ENGINE_SOURCES) -o $@ -ldl -lpthread $(LDLIBS) -Wl,--no-undefined
